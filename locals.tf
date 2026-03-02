@@ -22,7 +22,7 @@ locals {
   subnet_pub1a_final_tags = merge(
     local.common_tags,
     {
-      Name = "${var.project}-${var.environment}-${var.public}-us-east-1a" # roboshop-dev-public-us-east-1a
+      Name = "${var.project}-${var.environment}-${var.public}-${var.desired_azs[count.index]}" # roboshop-dev-public-us-east-1a/1b
     },
     var.subnet_tags
   )

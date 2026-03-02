@@ -14,9 +14,12 @@ resource "aws_internet_gateway" "main" {
 }
 
 # 3. create the  public subnets and 
-resource "aws_subnet" "main" {
-  vpc_id     = aws_vpc.main.id
-  cidr_block = var.public1a_cidr_block
+resource "aws_subnet" "public" {
+  count             = length(var.public_subnet_cidrs)
+  vpc_id            = aws_vpc.main.id
+  availability_zone = var.desired_azs[count.index]
+  cidr_block        = var.public_subnet_cidrs[count.index]
+
 
   tags = local.subnet_pub1a_final_tags
 }
