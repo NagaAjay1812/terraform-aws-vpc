@@ -58,3 +58,27 @@ variable "database_subnet_tags" {
 }
 
 
+variable "public_route_table_tags" {
+  type = map(any)
+  default = {
+
+  }
+}
+variable "private_route_table_tags" {
+  type = map(any)
+  default = {
+
+  }
+}
+variable "database_route_table_tags" {
+  type = map(any)
+  default = {
+
+  }
+}
+variable "nat_tags" {
+  type = map(any)
+  default = {
+
+  }
+}
