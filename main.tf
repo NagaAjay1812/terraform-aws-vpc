@@ -24,7 +24,7 @@ resource "aws_subnet" "public" {
   tags = merge(
     local.common_tags,
     {
-      Name = "${var.project}-${var.environment}-public-${local.az_names[count.index]}}" # roboshop-dev-public-us-east-1a/1b
+      Name = "${var.project}-${var.environment}-public-${local.az_names[count.index]}" # roboshop-dev-public-us-east-1a/1b
     },
     var.public_subnet_tags
   )
@@ -42,7 +42,7 @@ resource "aws_subnet" "private" {
   tags = merge(
     local.common_tags,
     {
-      Name = "${var.project}-${var.environment}-private-${local.az_names[count.index]}}" # roboshop-dev-private-us-east-1a/1b
+      Name = "${var.project}-${var.environment}-private-${local.az_names[count.index]}" # roboshop-dev-private-us-east-1a/1b
     },
     var.private_subnet_tags
   )
@@ -60,7 +60,7 @@ resource "aws_subnet" "database" {
   tags = merge(
     local.common_tags,
     {
-      Name = "${var.project}-${var.environment}-database-${local.az_names[count.index]}}" # roboshop-dev-database-us-east-1a/1b
+      Name = "${var.project}-${var.environment}-database-${local.az_names[count.index]}" # roboshop-dev-database-us-east-1a/1b
     },
     var.database_subnet_tags
   )
