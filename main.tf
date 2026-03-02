@@ -31,7 +31,7 @@ resource "aws_subnet" "public" {
 
 }
 
-# 3. create the  private subnets 
+# 4. create the  private subnets 
 resource "aws_subnet" "public" {
   count                   = length(var.private_subnet_cidrs)
   vpc_id                  = aws_vpc.main.id
@@ -49,7 +49,7 @@ resource "aws_subnet" "public" {
 
 }
 
-# 3. create the database subnets 
+# 5. create the database subnets 
 resource "aws_subnet" "public" {
   count                   = length(var.database_subnet_cidrs)
   vpc_id                  = aws_vpc.main.id
@@ -66,4 +66,6 @@ resource "aws_subnet" "public" {
   )
 
 }
+
+
 
