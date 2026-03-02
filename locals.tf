@@ -19,4 +19,11 @@ locals {
     },
     var.ig_tags
   )
+  subnet_pub1a_final_tags = merge(
+    local.common_tags,
+    {
+      Name = "${var.project}-${var.environment}-${var.public}-us-east-1a" # roboshop-dev-public-us-east-1a
+    },
+    var.subnet_tags
+  )
 }
