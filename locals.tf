@@ -18,4 +18,5 @@ locals {
       Name = "${var.project}-${var.environment}" # roboshop-dev 
     },
     var.ig_tags
+  )
 }
