@@ -7,10 +7,12 @@ data "aws_vpc" "default" {
 }
 
 
-data "aws_route_table" "public_rt" {
-  vpc_id = data.aws_vpc.main.id
+
+
+data "aws_route_table" "default_main" {
+  vpc_id = data.aws_vpc.default.id
   filter {
-    name   = "route.gateway-id"
-    values = ["igw-*"] # Filters for routes pointing to an Internet Gateway
+    name   = "association.main"
+    values = ["true"]
   }
 }
