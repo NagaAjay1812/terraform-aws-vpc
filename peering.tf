@@ -22,3 +22,15 @@ resource "aws_vpc_peering_connection" "default" {
   })
 
 }
+
+
+resource "aws_route" "requester_to_default_peering_route" {
+  route_table_id            = aws_route_table.public_rt.id
+  destination_cidr_block    = data.aws_vpc.default.cidr_block
+  vpc_peering_connection_id = aws_vpc_peering_connection.default.id
+
+}
+
+
+
+
