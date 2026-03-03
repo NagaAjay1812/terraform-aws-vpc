@@ -34,7 +34,7 @@ we create partions in our network for maintenance & security, they are two types
 * private subnet: the subnet dont have direct internet access, its not connected to IGW, we host like instances, databases here for security.
 
 ## NAT:
-the resources inside the private subnet dont have internt access to update or download anything so we are using NAT gateways to download or update the packages for servers.
+the resources inside the private subnet dont have internet access to update or download anything so we are using NAT gateways(NAT allows outbound internet access for private subnet resources without allowing inbound internet traffic to them) to download or update the packages for servers.
 
 ## Route table:
 A Route Table is just a set of directions (If traffic wants to go somewhere, where should I send it?) traffic rules
