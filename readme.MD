@@ -60,14 +60,20 @@ Association	-> Connect subnet to route table
 
 # 🔧 Inputs (Variables)
 * project - (required) string type, user should pass the project name
-* environment - (required) string type, user should pass the environment name, values hsould be one of the dev, qa, uat, prod
+* environment - (required) string type, user should pass the environment name, values should be one of the dev, qa, uat, prod
 
 
 ## 📤 outputs
-* vpc_id - ID of the VPC created  
+* main_vpc_id - ID of the main VPC created  
+* default_vpc_id - ID of the default VPC created 
+* availibility_zones - List of availabilty zones 
 * public_subnet_ids - List of public subnet IDs created  
 * private_subnet_ids - List of private subnet IDs created  
 * database_subnet_ids - List of database subnet IDs created 
+
+# rem: 
+- modules should output the required info to users.
+- users should catch and store it in ssm paramter store.
 
 ## 🚀 How to Run
 
