@@ -8,6 +8,7 @@ resource "aws_vpc_peering_connection" "default" {
   #Requestor -  roboshop-dev vpc 
   vpc_id = aws_vpc.main.id
 
+  auto_accept = true
   accepter {
     allow_remote_vpc_dns_resolution = true
   }
@@ -15,4 +16,9 @@ resource "aws_vpc_peering_connection" "default" {
   requester {
     allow_remote_vpc_dns_resolution = true
   }
+
+  tags = merge(local.common_tags, {
+    Name = "${var.project}-${var.environment}-to-default-vpc"
+  })
+
 }
