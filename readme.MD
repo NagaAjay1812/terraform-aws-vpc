@@ -50,6 +50,9 @@ A Route is one instruction inside the route table.(one rule)
 ## IGW:
 An Internet Gateway allows your VPC to talk to the internet.
 
+## Bastion host:
+Instance in public subnet used to connect instance in private subnets for security purpose.
+
 
 Component: Meaning
 Route Table ->	Traffic rules
@@ -71,7 +74,7 @@ Association	-> Connect subnet to route table
 * private_subnet_ids - List of private subnet IDs created  
 * database_subnet_ids - List of database subnet IDs created 
 
-# rem: 
+# remember: 
 - modules should output the required info to users.
 - users should catch and store it in ssm paramter store.
 

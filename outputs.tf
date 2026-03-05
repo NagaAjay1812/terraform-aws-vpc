@@ -10,7 +10,7 @@ output "default_vpc_id" {
   value = data.aws_vpc.default.id
 }
 
-output "publc_subnet_ids" {
+output "public_subnet_ids" {
   value = aws_subnet.public[*].id
 }
 
