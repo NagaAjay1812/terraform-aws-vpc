@@ -91,7 +91,7 @@ resource "aws_route" "public_internet_route" {
 
 }
 
-# 7. Associate the Route Table with the Public Subnet
+# 8. Associate the Route Table with the Public Subnet
 # This links the created route table with the specified subnet.
 resource "aws_route_table_association" "public_subnet_association" {
   count          = length(var.public_subnet_cidrs)
@@ -100,7 +100,7 @@ resource "aws_route_table_association" "public_subnet_association" {
 }
 
 
-# 8. create Route table for private
+# 9. create Route table for private
 resource "aws_route_table" "private_rt" {
   vpc_id = aws_vpc.main.id
 
@@ -113,7 +113,7 @@ resource "aws_route_table" "private_rt" {
   )
 }
 
-# 9. create Route table for database
+# 10. create Route table for database
 resource "aws_route_table" "database_rt" {
   vpc_id = aws_vpc.main.id
 
@@ -126,7 +126,7 @@ resource "aws_route_table" "database_rt" {
   )
 }
 
-# 10. Associate the Route Table with the private Subnet
+# 11. Associate the Route Table with the private Subnet
 # This links the created route table with the specified subnet.
 resource "aws_route_table_association" "private_subnet_association" {
   count          = length(var.private_subnet_cidrs)
@@ -134,7 +134,7 @@ resource "aws_route_table_association" "private_subnet_association" {
   route_table_id = aws_route_table.private_rt.id
 }
 
-# 11. Associate the Route Table with the database Subnet
+# 12. Associate the Route Table with the database Subnet
 # This links the created route table with the specified subnet.
 
 resource "aws_route_table_association" "database_subnet_association" {
@@ -144,13 +144,13 @@ resource "aws_route_table_association" "database_subnet_association" {
 }
 
 
-# 12. Allocate an Elastic IP for the NAT Gateway
+# 13. Allocate an Elastic IP for the NAT Gateway
 resource "aws_eip" "eip" {
   domain     = "vpc"
   depends_on = [aws_internet_gateway.main] # Ensure IGW is created first
 }
 
-# 13. Create the NAT Gateway in the public subnet
+# 14. Create the NAT Gateway in the public subnet
 resource "aws_nat_gateway" "nat" {
   allocation_id = aws_eip.eip.id
   subnet_id     = aws_subnet.public[0].id # only one subnet
@@ -163,14 +163,14 @@ resource "aws_nat_gateway" "nat" {
   )
 }
 
-# 14. Create a Private Route Table (directs to NAT Gateway)
+# 15. Create a Private Route Table (directs to NAT Gateway)
 resource "aws_route" "private_internet_route" {
   route_table_id         = aws_route_table.private_rt.id
   destination_cidr_block = "0.0.0.0/0"
   nat_gateway_id         = aws_nat_gateway.nat.id
 }
 
-# 15. Create a database Route Table (directs to NAT Gateway)
+# 16. Create a database Route Table (directs to NAT Gateway)
 resource "aws_route" "database_internet_route" {
   route_table_id         = aws_route_table.database_rt.id
   destination_cidr_block = "0.0.0.0/0"
