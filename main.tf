@@ -9,7 +9,7 @@ resource "aws_vpc" "main" {
 
 }
 # 2. Create the Internet Gateway and attach it to the VPC
-resource "aws_internet_gateway" "main" {
+resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.main.id
 
   tags = local.ig_final_tags
@@ -147,7 +147,7 @@ resource "aws_route_table_association" "database_subnet_association" {
 # 13. Allocate an Elastic IP for the NAT Gateway
 resource "aws_eip" "eip" {
   domain     = "vpc"
-  depends_on = [aws_internet_gateway.main] # Ensure IGW is created first
+  depends_on = [aws_internet_gateway.igw] # Ensure IGW is created first
 }
 
 # 14. Create the NAT Gateway in the public subnet
